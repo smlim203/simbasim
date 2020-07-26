@@ -204,6 +204,19 @@ namespace TunnelGame
 			UpdateBallPosition(move.x);
 			UpdateTunnelPosition(move.y);
 			UpdateCameraPosition(false);
+
+			foreach (var drop in this.drops)
+			{
+				// check range
+				var distance = Vector2.Distance((this.player.transform.position), (drop.transform.position));
+				if (distance < 40.0f)
+				{
+					// move
+					var pos = Vector2.MoveTowards(drop.transform.position, this.player.transform.position, 1);
+					drop.transform.position = pos;
+				}
+			}
+
 			CheckCollisions();
 			CheckDropsOffScreen();
 			
