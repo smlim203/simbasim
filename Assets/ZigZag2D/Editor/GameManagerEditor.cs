@@ -64,7 +64,9 @@ namespace TunnelGame
 		private void DrawPlayerSettings()
 		{
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("playerInfos"), true);
-			EditorGUILayout.PropertyField(serializedObject.FindProperty("speed"));
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("initialSpeed"));
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("increaseSpeed"));
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("increadSpeedByScore"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("scoreMultiplier"));
 		}
 		

@@ -48,7 +48,12 @@ namespace TunnelGame
 		[SerializeField] private GameObject	overUI;
 		
 		[SerializeField] private PlayerInfo[]	playerInfos;
-		[SerializeField] private float			speed;
+		// 초기 시작 스피드
+		[SerializeField] private int initialSpeed;
+		// 증가되는 스피드
+		[SerializeField] private int increaseSpeed;
+		// 얼마 점수마다 스피드가 증가될 것인가. 보통 10의 배수로 가자.
+		[SerializeField] private int increadSpeedByScore;
 		[SerializeField] private float			scoreMultiplier;
 
 		[Range(0f, 1f)]
@@ -121,6 +126,8 @@ namespace TunnelGame
 		private float MaxTunnelLengthInPixels	{ get { return maxTunnelLengthInUnits * unitSize; } }
 		private float MinTunnelLengthInPixels	{ get { return minTunnelLengthInUnits * unitSize; } }
 		private float OffScreenVertDistance 	{ get { return (MaxTunnelLengthInPixels + MaxTunnelSizeInPixels + Utilities.WorldWidth(gameCamera)) * 2f; } }
+
+		private int CurrentSpeed { get; set; }
 
 		#endregion
 		
@@ -199,7 +206,7 @@ namespace TunnelGame
 
 			// Calculate how fast the tunnel is falling and the player is moving
 			Vector2 dir		= (playerDirection == Direction.Left) ? leftDirection : rightDirection;
-			Vector2 move	= speed * Time.deltaTime * dir;
+			Vector2 move	= this.CurrentSpeed * Time.deltaTime * dir;
 
 			UpdateBkgMaterialOffsets(dir);
 			UpdateBallPosition(move.x);
@@ -213,6 +220,10 @@ namespace TunnelGame
 			
 			// The score is determined by the amount moved in the y direction multiplied by the scoreMultiplier rounded to an integer
 			CurrentScore = Mathf.RoundToInt(-tunnelGameObject.transform.position.y * scoreMultiplier);
+			if (this.CurrentScore % this.increadSpeedByScore == 0)
+            {
+				this.CurrentSpeed = this.initialSpeed + this.increaseSpeed * (this.CurrentScore / this.increadSpeedByScore);
+            }
 		}
 		
 		#endregion
@@ -229,6 +240,7 @@ namespace TunnelGame
 			// Set the current score to 0
 			CurrentScore = 0;
 			this.CurrentDropsAmount = 0;
+			this.CurrentSpeed = this.initialSpeed;
 
 			// Clear the drop info
 			drops.Clear();
