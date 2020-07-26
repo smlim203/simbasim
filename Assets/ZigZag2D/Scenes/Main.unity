@@ -6364,7 +6364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: -0.00012207031, y: 86.267426}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &600622474
@@ -6632,6 +6632,7 @@ MonoBehaviour:
   gameCamera: {fileID: 1065296098}
   parentCanvas: {fileID: 2006109306}
   currentScoreText: {fileID: 707273832}
+  currentDropAmountText: {fileID: 893800153}
   highScoreMarker: {fileID: 1344145336}
   averageScoreMarker: {fileID: 1309093050}
   highScoreMarkerText: {fileID: 1089571250}

@@ -102,6 +102,7 @@ namespace TunnelGame
 
 		public PlayerInfo[]	PlayerInfos		{ get { return playerInfos; } }
 		public int 			CurrentScore 	{ get; set; }
+		public float		CurrentDropsAmount { get; set; }
 
 		// These values are saved across app loads
 		public int		CurrentPlayerIndex	{ get { return PlayerPrefs.GetInt("TunnelGame_CurrentPlayerIndex"); }		set { PlayerPrefs.SetInt("TunnelGame_CurrentPlayerIndex", value); } }
@@ -227,6 +228,7 @@ namespace TunnelGame
 		{
 			// Set the current score to 0
 			CurrentScore = 0;
+			this.CurrentDropsAmount = 0;
 
 			// Clear the drop info
 			drops.Clear();
@@ -406,6 +408,7 @@ namespace TunnelGame
 				if (Vector2.Distance((Vector2)player.transform.position, (Vector2)drops[i].transform.position) <= player.CollisionSize + drops[i].CollisionSize)
 				{
 					// Increment the drops collected
+					this.CurrentDropsAmount += dropCollectAmount;
 					DropsCollected += dropCollectAmount;
 
 					// Set it to de-active, this will return it ot the pool

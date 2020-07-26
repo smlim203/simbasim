@@ -10,7 +10,8 @@ namespace TunnelGame
 
 		[SerializeField] private Camera			gameCamera;
 		[SerializeField] private Canvas			parentCanvas;
-		[SerializeField] private Text			currentScoreText; 
+		[SerializeField] private Text			currentScoreText;
+		[SerializeField] private Text			currentDropAmountText;
 		[SerializeField] private RectTransform 	highScoreMarker;
 		[SerializeField] private RectTransform 	averageScoreMarker;
 		[SerializeField] private Text			highScoreMarkerText; 
@@ -57,6 +58,7 @@ namespace TunnelGame
 			averageScoreMarker.gameObject.SetActive(averageScore != 0 && averageScore != highScore);
 
 			currentScoreText.text		= GameManager.Instance.CurrentScore.ToString();
+			this.currentDropAmountText.text = GameManager.Instance.CurrentDropsAmount.ToString();
 			highScoreMarkerText.text	= "High: " + highScore;
 			averageScoreMarkerText.text	= "Average: " + averageScore;
 
