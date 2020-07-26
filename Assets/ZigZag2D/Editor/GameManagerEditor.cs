@@ -87,7 +87,7 @@ namespace TunnelGame
 
 		private void DrawTunnelSettings()
 		{
-			EditorGUILayout.PropertyField(serializedObject.FindProperty("tunnelMaterial"));
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("tunnelMaterials"), true);
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("textureFillsTunnel"));
 			
 			SerializedProperty alignTexture = serializedObject.FindProperty("alignTextureWithTunnel");

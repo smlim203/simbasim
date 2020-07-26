@@ -66,7 +66,7 @@ namespace TunnelGame
 		[SerializeField] private float		bkgMoveSpeed;
 		[SerializeField] private float		bkgRepeatSize;
 
-		[SerializeField] private Material	tunnelMaterial;
+		[SerializeField] private Material[]	tunnelMaterials;
 		[SerializeField] private bool		textureFillsTunnel;
 		[SerializeField] private bool		alignTextureWithTunnel;
 		[SerializeField] private float		unitSize;
@@ -217,13 +217,8 @@ namespace TunnelGame
 
 			CheckCollisions();
 			CheckDropsOffScreen();
-			
-			// The score is determined by the amount moved in the y direction multiplied by the scoreMultiplier rounded to an integer
-			CurrentScore = Mathf.RoundToInt(-tunnelGameObject.transform.position.y * scoreMultiplier);
-			if (this.CurrentScore % this.increadSpeedByScore == 0)
-            {
-				this.CurrentSpeed = this.initialSpeed + this.increaseSpeed * (this.CurrentScore / this.increadSpeedByScore);
-            }
+
+			this.UpdateGameFactor();
 		}
 		
 		#endregion
@@ -338,6 +333,36 @@ namespace TunnelGame
 		{
 			// Move the ball but only in the x direction
 			player.transform.position = new Vector3(player.transform.position.x + xAmount, player.transform.position.y);
+		}
+
+        private void UpdateGameFactor()
+        {
+			this.UpdateScore();
+			this.UpdateSpeed();
+			this.UpdateTunnelMaterial();
+        }
+
+		private void UpdateScore()
+        {
+			// The score is determined by the amount moved in the y direction multiplied by the scoreMultiplier rounded to an integer
+			CurrentScore = Mathf.RoundToInt(-tunnelGameObject.transform.position.y * scoreMultiplier);
+		}
+
+        private void UpdateSpeed()
+        {
+			if (this.CurrentScore % this.increadSpeedByScore == 0)
+			{
+				this.CurrentSpeed = this.initialSpeed + this.increaseSpeed * (this.CurrentScore / this.increadSpeedByScore);
+			}
+		}
+
+		private void UpdateTunnelMaterial()
+        {
+			if (this.CurrentScore > 0 && this.CurrentScore % 10 == 0)
+            {
+				var index = (this.CurrentScore / 10) % (this.tunnelMaterials.Length);
+				tunnelGameObject.GetComponent<MeshRenderer>().material = tunnelMaterials[index];
+			}
 		}
 
 		/// <summary>
@@ -650,7 +675,7 @@ namespace TunnelGame
 			
 			// Create the required mesh components
 			tunnelGameObject.AddComponent<MeshFilter>().mesh = tunnelMesh;
-			tunnelGameObject.AddComponent<MeshRenderer>().material = tunnelMaterial;
+			tunnelGameObject.AddComponent<MeshRenderer>().material = tunnelMaterials[0];
 		}
 		
 		public void AddTunnel(float nextTunnelLength = 0f, bool canAddDrop = true)

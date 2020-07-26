@@ -8422,7 +8422,9 @@ MonoBehaviour:
   bkgMaterial: {fileID: 2100000, guid: 4c257a31acb974adfbf35d9670a966de, type: 2}
   bkgMoveSpeed: 1
   bkgRepeatSize: 10
-  tunnelMaterial: {fileID: 2100000, guid: 72a662b71dba142c596a3f4c7f095fb4, type: 2}
+  tunnelMaterials:
+  - {fileID: 2100000, guid: 72a662b71dba142c596a3f4c7f095fb4, type: 2}
+  - {fileID: 2100000, guid: 044335418b43c7a4abfdcbef6b6968fe, type: 2}
   textureFillsTunnel: 0
   alignTextureWithTunnel: 1
   unitSize: 8.5
