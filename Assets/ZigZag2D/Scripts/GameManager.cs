@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.ZigZag2D.Scripts;
+using UnityEngine.Advertisements;
 
 namespace TunnelGame
 {
@@ -109,6 +111,8 @@ namespace TunnelGame
 		public int 			CurrentScore 	{ get; set; }
 		public float		CurrentDropsAmount { get; set; }
 
+		public UnityAD UnityAD = new UnityAD();
+
 		// These values are saved across app loads
 		public int		CurrentPlayerIndex	{ get { return PlayerPrefs.GetInt("TunnelGame_CurrentPlayerIndex"); }		set { PlayerPrefs.SetInt("TunnelGame_CurrentPlayerIndex", value); } }
 		public int 		HighScore			{ get { return PlayerPrefs.GetInt("TunnelGame_HighScore"); }				set { PlayerPrefs.SetInt("TunnelGame_HighScore", value); } }
@@ -129,12 +133,14 @@ namespace TunnelGame
 
 		private int CurrentSpeed { get; set; }
 
-		#endregion
-		
-		#region Unity Methods
-		
-		private void Start()
+        #endregion
+
+        #region Unity Methods
+
+        private void Start()
 		{
+			this.UnityAD.Initialize();
+
 			if (!gameCamera.orthographic)
 			{
 				Debug.LogError("GameCamera must be an orthographic camera!");
@@ -270,6 +276,8 @@ namespace TunnelGame
 			
 			// Create the mesh and the starting vertices
 			SetupMesh();
+
+			this.UnityAD.ShowAd();
 		}
 
 		/// <summary>
