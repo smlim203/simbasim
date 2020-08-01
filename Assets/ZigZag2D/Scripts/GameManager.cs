@@ -383,7 +383,22 @@ namespace TunnelGame
 
 		private void UpdateFeverMode()
         {
-			if (this.CurrentScore > 0 && this.IsFeverMode == false &&  this.CurrentScore % this.feverModeLaunchScore == 0)
+			if (this.CurrentScore <= 0)
+            {
+				return;
+            }
+
+			if (this.IsFeverMode == true)
+            {
+				return;
+            }
+
+			if (this.feverModeLaunchScore <= 0)
+            {
+				return;
+            }
+
+			if (this.CurrentScore % this.feverModeLaunchScore == 0)
             {
 				this.IsFeverMode = true;
 				Invoke("DisableFeverMode", this.feverModeTime);
@@ -491,7 +506,7 @@ namespace TunnelGame
 
 					// Set it to de-active, this will return it ot the pool
 					drops[i].gameObject.SetActive(false);
-
+					drops[i].Disappear();
 					// Remove it from the list of drops
 					drops.RemoveAt(i);
 					i--;

@@ -77,13 +77,13 @@ namespace TunnelGame
 
 			if (GameManager.Instance.IsFeverMode)
 			{
-				var v3 = new Vector3()
+				var v = new Vector3()
 				{
 					x = Utilities.WorldWidth(gameCamera),
 					y = Utilities.WorldHeight(gameCamera),
 				};
 
-				this.FeverModeMaker.transform.localPosition = v3;
+				this.FeverModeMaker.transform.localPosition = v;
 			}
 		}
 

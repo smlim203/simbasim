@@ -8,12 +8,18 @@ namespace TunnelGame
 		#region Inspector Variables
 
 		[SerializeField] private float collisionSize;
+		[SerializeField] private ParticleSystem disappearParticle;
 
 		#endregion
-		
+
 		#region Properties
-		
+
 		public float CollisionSize { get { return collisionSize; } }
+
+		public void Disappear()
+        {
+			Instantiate(this.disappearParticle, this.transform.position, Quaternion.identity);
+        }
 		
 		#endregion
 	}
