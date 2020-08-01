@@ -58,6 +58,9 @@ namespace TunnelGame
 		[SerializeField] private int increadSpeedByScore;
 		[SerializeField] private float			scoreMultiplier;
 
+		[SerializeField] private int feverModeLaunchScore;
+		[SerializeField] private int feverModeTime;
+
 		[Range(0f, 1f)]
 		[SerializeField] private float		dropChance;
 		[SerializeField] private float		dropCollectAmount;
@@ -125,10 +128,13 @@ namespace TunnelGame
 		public float 	HighScoreYPos		{ get { return tunnelGameObject == null ? 0 : tunnelGameObject.transform.position.y + (float)HighScore / scoreMultiplier; } }
 		public float 	AverageScoreYPos	{ get { return tunnelGameObject == null ? 0 : tunnelGameObject.transform.position.y + (float)AverageScore / scoreMultiplier; } }
 
+		public bool IsFeverMode { get; set; } = false;
+
 		private float MaxTunnelSizeInPixels		{ get { return maxTunnelSizeInUnits * unitSize; } }
 		private float MinTunnelSizeInPixels		{ get { return minTunnelSizeInUnits * unitSize; } }
 		private float MaxTunnelLengthInPixels	{ get { return maxTunnelLengthInUnits * unitSize; } }
 		private float MinTunnelLengthInPixels	{ get { return minTunnelLengthInUnits * unitSize; } }
+
 		private float OffScreenVertDistance 	{ get { return (MaxTunnelLengthInPixels + MaxTunnelSizeInPixels + Utilities.WorldWidth(gameCamera)) * 2f; } }
 
 		private int CurrentSpeed { get; set; }
@@ -219,7 +225,7 @@ namespace TunnelGame
 			UpdateTunnelPosition(move.y);
 			UpdateCameraPosition(false);
 
-			this.AdjustPlayerAbility();
+			this.AdjustPlayerAbility();	//// 이게 플레이어쪽으로 들어가 있어야 할 것 같음. 혹은 이름을 Update 모시기로..
 
 			CheckCollisions();
 			CheckDropsOffScreen();
@@ -347,6 +353,7 @@ namespace TunnelGame
         {
 			this.UpdateScore();
 			this.UpdateSpeed();
+			this.UpdateFeverMode();
 			this.UpdateTunnelMaterial();
         }
 
@@ -365,13 +372,35 @@ namespace TunnelGame
 		}
 
 		private void UpdateTunnelMaterial()
-        {
+		{
+			//// tunnel material color change
 			if (this.CurrentScore > 0 && this.CurrentScore % 10 == 0)
-            {
+			{
 				var index = (this.CurrentScore / 10) % (this.tunnelMaterials.Length);
 				tunnelGameObject.GetComponent<MeshRenderer>().material = tunnelMaterials[index];
 			}
 		}
+
+		private void UpdateFeverMode()
+        {
+			if (this.CurrentScore > 0 && this.IsFeverMode == false &&  this.CurrentScore % this.feverModeLaunchScore == 0)
+            {
+				this.IsFeverMode = true;
+				Invoke("DisableFeverMode", this.feverModeTime);
+				InvokeRepeating("UpdateInFeverMode", 1, 0.5f);
+            }
+        }
+
+		private void UpdateInFeverMode()
+        {
+			this.IncreaseCurrentDropAmount(100);
+        }
+
+		private void DisableFeverMode()
+        {
+			this.IsFeverMode = false;
+			CancelInvoke("UpdateInFeverMode");
+        }
 
 		/// <summary>
 		/// Updates the position of the tunnel by moving it down yAmount
@@ -446,6 +475,11 @@ namespace TunnelGame
 				}
 			}
 
+			this.DropsCollision();
+		}
+
+		private void DropsCollision()
+        {
 			// Check if the player has collided with any of the drops
 			for (int i = 0; i < drops.Count; i++)
 			{
@@ -453,8 +487,7 @@ namespace TunnelGame
 				if (Vector2.Distance((Vector2)player.transform.position, (Vector2)drops[i].transform.position) <= player.CollisionSize + drops[i].CollisionSize)
 				{
 					// Increment the drops collected
-					this.CurrentDropsAmount += dropCollectAmount;
-					DropsCollected += dropCollectAmount;
+					this.IncreaseCurrentDropAmount(this.dropCollectAmount);
 
 					// Set it to de-active, this will return it ot the pool
 					drops[i].gameObject.SetActive(false);
@@ -464,6 +497,12 @@ namespace TunnelGame
 					i--;
 				}
 			}
+		}
+
+		private void IncreaseCurrentDropAmount(float amount)
+        {
+			this.CurrentDropsAmount += amount;
+			DropsCollected += amount;
 		}
 
 		private bool CheckWallCollision(Vector2 wallVert1, Vector2 wallVert2)

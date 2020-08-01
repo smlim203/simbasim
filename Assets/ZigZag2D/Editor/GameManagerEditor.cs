@@ -22,7 +22,13 @@ namespace TunnelGame
 			EditorGUI.indentLevel++;
 			DrawPlayerSettings();
 			EditorGUI.indentLevel--;
-			
+
+			EditorGUILayout.Space();
+			EditorGUILayout.LabelField("FeverMode Settings:");
+			EditorGUI.indentLevel++;
+			FeverModeSettings();
+			EditorGUI.indentLevel--;
+
 			EditorGUILayout.Space();
 			EditorGUILayout.LabelField("Drop Settings:");
 			EditorGUI.indentLevel++;
@@ -69,7 +75,13 @@ namespace TunnelGame
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("increadSpeedByScore"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("scoreMultiplier"));
 		}
-		
+
+		private void FeverModeSettings()
+        {
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("feverModeLaunchScore"));
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("feverModeTime"));
+		}
+
 		private void DrawDropSettings()
 		{
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("dropChance"), new GUIContent("Drop Chance %"));

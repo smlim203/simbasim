@@ -14,9 +14,11 @@ namespace TunnelGame
 		[SerializeField] private Text			currentDropAmountText;
 		[SerializeField] private RectTransform 	highScoreMarker;
 		[SerializeField] private RectTransform 	averageScoreMarker;
+		[SerializeField] private RectTransform	FeverModeMaker;
 		[SerializeField] private Text			highScoreMarkerText; 
-		[SerializeField] private Text			averageScoreMarkerText; 
-		
+		[SerializeField] private Text			averageScoreMarkerText;
+		[SerializeField] private Text			FeverModeMakerText;
+
 		#endregion
 
 		#region Member Variables
@@ -36,6 +38,7 @@ namespace TunnelGame
 		{
 			highScoreMarker.gameObject.SetActive(false);
 			averageScoreMarker.gameObject.SetActive(false);
+			FeverModeMaker.gameObject.SetActive(false);
 			
 			UpdateUI();
 		}
@@ -64,6 +67,24 @@ namespace TunnelGame
 
 			highScoreMarker.anchoredPosition	= new Vector2(highScoreMarker.anchoredPosition.x, GameManager.Instance.HighScoreYPos * scale);
 			averageScoreMarker.anchoredPosition	= new Vector2(averageScoreMarker.anchoredPosition.x, GameManager.Instance.AverageScoreYPos * scale);
+
+			this.UpdateFeverModeUI();
+		}
+
+		private void UpdateFeverModeUI()
+        {
+			this.FeverModeMaker.gameObject.SetActive(GameManager.Instance.IsFeverMode);
+
+			if (GameManager.Instance.IsFeverMode)
+			{
+				var v3 = new Vector3()
+				{
+					x = Utilities.WorldWidth(gameCamera),
+					y = Utilities.WorldHeight(gameCamera),
+				};
+
+				this.FeverModeMaker.transform.localPosition = v3;
+			}
 		}
 
 		#endregion
