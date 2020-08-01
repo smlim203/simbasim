@@ -97,3 +97,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionSize: 4.8
   type: 0
+  feverParticle: {fileID: 1639792842507500898, guid: 4be42cfcd6dd34743bd8f8b430746fd7,
+    type: 3}

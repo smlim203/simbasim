@@ -409,6 +409,7 @@ namespace TunnelGame
 		private void UpdateInFeverMode()
         {
 			this.IncreaseCurrentDropAmount(100);
+			this.player.AppearParticle();
         }
 
 		private void DisableFeverMode()

@@ -17,12 +17,18 @@ namespace TunnelGame
 		[SerializeField] private float collisionSize;
 
 		[SerializeField] private PlayerType type;
+		[SerializeField] private ParticleSystem feverParticle;
 
 		#endregion
 
 		#region Properties
 
 		public float CollisionSize { get { return collisionSize; } }
+
+		public void AppearParticle()
+        {
+			Instantiate(this.feverParticle, this.transform.position, Quaternion.identity);
+		}
 
 		public void PlayerAbility(List<Drop> drops)
         {
