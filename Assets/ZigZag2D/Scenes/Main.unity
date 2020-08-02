@@ -3985,12 +3985,12 @@ MonoBehaviour:
     iconColor: {r: 1, g: 1, b: 1, a: 1}
   initialSpeed: 100
   increaseSpeed: 10
-  increadSpeedByScore: 10
+  increadSpeedByScore: 20
   scoreMultiplier: 0.1
-  feverModeLaunchScore: 10
+  feverModeLaunchScore: 100
   feverModeTime: 2
   dropChance: 0.733
-  dropCollectAmount: 1
+  dropCollectAmount: 2
   dropEdgePadding: 5
   dropPrefab: {fileID: 11472190, guid: d6f2e48dac4954d45a71e21118ff685f, type: 3}
   bkgMaterial: {fileID: 2100000, guid: 4c257a31acb974adfbf35d9670a966de, type: 2}
@@ -4005,7 +4005,7 @@ MonoBehaviour:
   textureSize: 10
   maxTunnelSizeInUnits: 8
   minTunnelSizeInUnits: 2
-  minTunnelLengthInUnits: 1
+  minTunnelLengthInUnits: 2
   maxTunnelLengthInUnits: 7
 --- !u!1 &1476232825
 GameObject:
@@ -5640,3 +5640,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4be42cfcd6dd34743bd8f8b430746fd7, type: 3}
+--- !u!1001 &7381447713430729362
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1818857117757392635, guid: 5a6c8be36f2c01543a246fc9228f989d,
+        type: 3}
+      propertyPath: m_Name
+      value: Particle System Fever
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522447142479365965, guid: 5a6c8be36f2c01543a246fc9228f989d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522447142479365965, guid: 5a6c8be36f2c01543a246fc9228f989d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522447142479365965, guid: 5a6c8be36f2c01543a246fc9228f989d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522447142479365965, guid: 5a6c8be36f2c01543a246fc9228f989d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522447142479365965, guid: 5a6c8be36f2c01543a246fc9228f989d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522447142479365965, guid: 5a6c8be36f2c01543a246fc9228f989d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522447142479365965, guid: 5a6c8be36f2c01543a246fc9228f989d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522447142479365965, guid: 5a6c8be36f2c01543a246fc9228f989d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522447142479365965, guid: 5a6c8be36f2c01543a246fc9228f989d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522447142479365965, guid: 5a6c8be36f2c01543a246fc9228f989d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522447142479365965, guid: 5a6c8be36f2c01543a246fc9228f989d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a6c8be36f2c01543a246fc9228f989d, type: 3}
