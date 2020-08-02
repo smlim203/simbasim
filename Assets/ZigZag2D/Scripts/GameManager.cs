@@ -375,7 +375,7 @@ namespace TunnelGame
 		private void UpdateTunnelMaterial()
 		{
 			//// tunnel material color change
-			if (this.CurrentScore > 0 && this.CurrentScore % 10 == 0)
+			if (this.CurrentScore > 0 && this.CurrentScore % changeColorByScore == 0)
 			{
 				var index = (this.CurrentScore / 10) % (this.tunnelMaterials.Length);
 				tunnelGameObject.GetComponent<MeshRenderer>().material = tunnelMaterials[index];
