@@ -71,7 +71,8 @@ namespace TunnelGame
 		[SerializeField] private float		bkgMoveSpeed;
 		[SerializeField] private float		bkgRepeatSize;
 
-		[SerializeField] private Material[]	tunnelMaterials;
+		[SerializeField] private Material[] tunnelMaterials;
+		[SerializeField] private int		changeColorByScore;
 		[SerializeField] private bool		textureFillsTunnel;
 		[SerializeField] private bool		alignTextureWithTunnel;
 		[SerializeField] private float		unitSize;

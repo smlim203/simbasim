@@ -100,6 +100,8 @@ namespace TunnelGame
 		private void DrawTunnelSettings()
 		{
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("tunnelMaterials"), true);
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("changeColorByScore"));
+			
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("textureFillsTunnel"));
 			
 			SerializedProperty alignTexture = serializedObject.FindProperty("alignTextureWithTunnel");
