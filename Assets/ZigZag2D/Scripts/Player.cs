@@ -27,7 +27,8 @@ namespace TunnelGame
 
 		public void AppearParticle()
         {
-			Instantiate(this.feverParticle, this.transform.position, Quaternion.identity);
+			var feverParticle = Instantiate(this.feverParticle, this.transform.position, Quaternion.identity);
+			Destroy(feverParticle.gameObject, 1);
 		}
 
 		public void PlayerAbility(List<Drop> drops)

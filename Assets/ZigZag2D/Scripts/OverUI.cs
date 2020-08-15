@@ -30,15 +30,15 @@ namespace TunnelGame
 		{
 			scoreText.text			= GameManager.Instance.CurrentScore.ToString();
 			highScoreText.text		= "HIGHSCORE: " + GameManager.Instance.HighScore;
-			averageScoreText.text	= "AVERAGE: " + GameManager.Instance.AverageScore;
+			averageScoreText.text	= "AVERAGE: " + GameManager.Instance.DropsCollected.ToString();
 		}
 
 		private void Update()
 		{
-			if (coinsAmountText.text != GameManager.Instance.DropsCollected.ToString())
+			if (coinsAmountText.text != GameManager.Instance.CurrentDropsAmount.ToString())
 			{
 				// Coins amount could change if the player buys something on the player select screen
-				coinsAmountText.text = GameManager.Instance.DropsCollected.ToString();
+				coinsAmountText.text = GameManager.Instance.CurrentDropsAmount.ToString();
 			}
 		}
 
