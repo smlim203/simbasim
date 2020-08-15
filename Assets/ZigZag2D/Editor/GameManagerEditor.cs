@@ -54,6 +54,7 @@ namespace TunnelGame
 
 		private void DrawGeneralSettings()
 		{
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("Test"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("gameCamera"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("startUI"));
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("playerSelectUI"));

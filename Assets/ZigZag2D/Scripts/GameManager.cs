@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.ZigZag2D.Scripts;
 using UnityEngine.Advertisements;
+using TMPro;
 
 namespace TunnelGame
 {
@@ -39,9 +40,8 @@ namespace TunnelGame
 		}
 
 		#endregion
-
 		#region Inspector Variables
-
+		[SerializeField] private GameObject Test;
 		[SerializeField] private bool		showCollisionBoxesInScene;
 		[SerializeField] private Camera		gameCamera;
 		[SerializeField] private GameObject	startUI;
@@ -232,6 +232,16 @@ namespace TunnelGame
 			CheckDropsOffScreen();
 
 			this.UpdateGameFactor();
+
+
+			//var textObject = GameObject.Find("FloatingText");
+			//var textObject = (GameObject)Resources.Load("ZigZag2D/AssetFiles/Prefabs/UI/FloatingText", typeof(GameObject));
+			
+			//InstTest.transform.position = Camera.main.WorldToScreenPoint(this.player.transform.position); // 표시될 위치
+			//textObject.transform.position = this.player.transform.position; // 표시될 위치
+			//InstTest.GetComponent<FloatingText>().text.text = "X10000"; // 데미지 전달
+			////Destroy(InstTest, 1);
+			
 		}
 		
 		#endregion
@@ -525,6 +535,19 @@ namespace TunnelGame
 
 		private void IncreaseCurrentDropAmount(float amount)
         {
+			if (this.player.Type == Player.PlayerType.Target)
+            {
+				amount = amount * 2;
+            }
+
+			if (this.player.Type == Player.PlayerType.Blue && this.IsFeverMode)
+            {
+				amount = amount * 4;
+            }
+
+			var clone = Instantiate(this.Test, Camera.main.WorldToScreenPoint(this.player.transform.position), Quaternion.Euler(Vector3.zero));
+			clone.transform.SetParent(this.gameUI.transform);
+
 			this.CurrentDropsAmount += amount;
 			DropsCollected += amount;
 		}

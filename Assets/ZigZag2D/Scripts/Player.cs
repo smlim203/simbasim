@@ -12,6 +12,7 @@ namespace TunnelGame
 			Blue = 1,
 			Red,
 			Star,
+			Target,
 		}
 
 		#region Inspector Variables
