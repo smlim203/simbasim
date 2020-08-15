@@ -368,7 +368,14 @@ namespace TunnelGame
         {
 			if (this.CurrentScore % this.increadSpeedByScore == 0)
 			{
-				this.CurrentSpeed = this.initialSpeed + this.increaseSpeed * (this.CurrentScore / this.increadSpeedByScore);
+				var FinalIncreaseSpeed = this.increaseSpeed;
+
+				if (this.player.Type == Player.PlayerType.Red)
+                {
+					FinalIncreaseSpeed = (int)(FinalIncreaseSpeed / 2);
+				}
+
+				this.CurrentSpeed = this.initialSpeed + FinalIncreaseSpeed * (this.CurrentScore / this.increadSpeedByScore);
 			}
 		}
 

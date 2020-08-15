@@ -10,6 +10,8 @@ namespace TunnelGame
 		{
 			None = 0,
 			Blue = 1,
+			Red,
+			Star,
 		}
 
 		#region Inspector Variables
@@ -24,6 +26,7 @@ namespace TunnelGame
 		#region Properties
 
 		public float CollisionSize { get { return collisionSize; } }
+		public PlayerType Type { get; protected set; }
 
 		public void AppearParticle()
         {
@@ -35,7 +38,7 @@ namespace TunnelGame
         {
 			switch (this.type)
             {
-				case PlayerType.Blue: this.MagnetAbility(drops);
+				case PlayerType.Star: this.MagnetAbility(drops);
 					break;
             }
         }
