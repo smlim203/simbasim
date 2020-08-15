@@ -505,7 +505,7 @@ namespace TunnelGame
 				{
 					// Increment the drops collected
 					this.IncreaseCurrentDropAmount(this.dropCollectAmount);
-
+					GameObject.Find("coin_sound").GetComponent<AudioSource>().Play();
 					// Set it to de-active, this will return it ot the pool
 					drops[i].gameObject.SetActive(false);
 					drops[i].Disappear();

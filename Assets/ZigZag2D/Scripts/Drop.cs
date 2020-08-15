@@ -18,8 +18,9 @@ namespace TunnelGame
 
 		public void Disappear()
         {
-			Instantiate(this.disappearParticle, this.transform.position, Quaternion.identity);
-        }
+			var particalSystem = Instantiate(this.disappearParticle, this.transform.position, Quaternion.identity);
+			Destroy(particalSystem.gameObject, 1);
+		}
 		
 		#endregion
 	}
