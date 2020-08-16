@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Assets.ZigZag2D.Scripts;
 using UnityEngine.Advertisements;
 using TMPro;
+using UnityEngine.UI;
 
 namespace TunnelGame
 {
@@ -103,6 +104,7 @@ namespace TunnelGame
 		private Direction	tunnelDirection;
 		private Vector2		leftDirection;
 		private Vector2		rightDirection;
+		private GameState prevGameState;
 		private GameState	gameState;
 		private Direction	playerDirection;
 		private Vector2 	uvStartPoint;
@@ -316,13 +318,19 @@ namespace TunnelGame
 		/// <summary>
 		/// Changes the state of the game and updates the UI
 		/// </summary>
-		public void ChangeGameState(GameState newGameState)
+		public void ChangeGameState(GameState newGameState, bool isBackButton = false)
 		{
+			if (isBackButton && this.prevGameState != GameState.Over)
+            {
+				newGameState = GameState.Idle;
+            }
+
 			startUI.gameObject.SetActive(newGameState == GameState.Idle);
 			playerSelectUI.gameObject.SetActive(newGameState == GameState.PlayerSelect);
 			gameUI.gameObject.SetActive(newGameState == GameState.Playing);
 			overUI.gameObject.SetActive(newGameState == GameState.Over);
-			
+
+			this.prevGameState = this.gameState;
 			gameState = newGameState;
 		}
 
@@ -535,18 +543,28 @@ namespace TunnelGame
 
 		private void IncreaseCurrentDropAmount(float amount)
         {
+			if (this.gameState != GameState.Playing)
+            {
+				return;
+            }
+
 			if (this.player.Type == Player.PlayerType.Target)
             {
 				amount = amount * 2;
-            }
+				var clone = Instantiate(this.Test, Camera.main.WorldToScreenPoint(this.player.transform.position), Quaternion.Euler(Vector3.zero));
+				clone.GetComponent<Text>().text = "Bonus x2";
+				clone.transform.SetParent(this.gameUI.transform);
+			}
 
 			if (this.player.Type == Player.PlayerType.Blue && this.IsFeverMode)
             {
 				amount = amount * 4;
-            }
+				var clone = Instantiate(this.Test, Camera.main.WorldToScreenPoint(this.player.transform.position), Quaternion.Euler(Vector3.zero));
+				clone.GetComponent<Text>().text = "Bonus x4";
+				clone.transform.SetParent(this.gameUI.transform);
+			}
 
-			var clone = Instantiate(this.Test, Camera.main.WorldToScreenPoint(this.player.transform.position), Quaternion.Euler(Vector3.zero));
-			clone.transform.SetParent(this.gameUI.transform);
+			
 
 			this.CurrentDropsAmount += amount;
 			DropsCollected += amount;

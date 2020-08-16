@@ -59,7 +59,7 @@ namespace TunnelGame
 		public void BackClicked()
 		{
 			// Set it back to Over so the over screen shows
-			GameManager.Instance.ChangeGameState(GameManager.GameState.Over);
+			GameManager.Instance.ChangeGameState(GameManager.GameState.Over, true);
 		}
 
 		#endregion

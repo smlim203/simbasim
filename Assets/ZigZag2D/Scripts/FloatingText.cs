@@ -19,9 +19,9 @@ public class FloatingText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveSpeed = 1.0f;
-        alphaSpeed = 10.0f;
-        destroyTime = 5.0f;
+        moveSpeed = 0.5f;
+        alphaSpeed = 3.0f;
+        destroyTime = 2.0f;
         //this.text = GetComponent<Text>();
         /*
         //var gameObj = GameObject.Find("FloatingText");
@@ -51,6 +51,11 @@ public class FloatingText : MonoBehaviour
 
         vector.Set(text.transform.position.x, text.transform.position.y + (moveSpeed + Time.deltaTime), text.transform.position.z);
         this.transform.position = vector;
+
+        var color = this.text.color;
+        var alpha = color.a;
+        color.a = Mathf.Lerp(alpha, 0, Time.deltaTime * alphaSpeed); // 텍스트 알파값
+        this.text.color = color;
 
         destroyTime -= Time.deltaTime;
 

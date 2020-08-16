@@ -27,7 +27,7 @@ namespace TunnelGame
 		#region Properties
 
 		public float CollisionSize { get { return collisionSize; } }
-		public PlayerType Type { get; protected set; }
+		public PlayerType Type { get { return this.type; } protected set { this.type = value; } }
 
 		public void AppearParticle()
         {
