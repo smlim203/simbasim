@@ -20,6 +20,7 @@ namespace TunnelGame
 			public float	unlockAmount;
 			public Sprite	icon;
 			public Color	iconColor;
+			public string description;
 		}
 
 		#endregion
