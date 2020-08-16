@@ -53,7 +53,7 @@ namespace TunnelGame
 				if (distance < 40.0f)
 				{
 					// move
-					var pos = Vector2.MoveTowards(drop.transform.position, this.transform.position, 1);
+					var pos = Vector2.MoveTowards(drop.transform.position, this.transform.position, 1 + Time.deltaTime);
 					drop.transform.position = pos;
 				}
 			}

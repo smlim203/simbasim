@@ -325,7 +325,12 @@ namespace TunnelGame
 				newGameState = GameState.Idle;
             }
 
-			startUI.gameObject.SetActive(newGameState == GameState.Idle);
+			////if (newGameState == GameState.Idle)
+   ////         {
+			////	GameObject.Find("HighScoreText").GetComponent<Text>().text = "HighScore: " + this.HighScore;
+			////	startUI.gameObject.SetActive(newGameState == GameState.Idle);
+			////}
+
 			playerSelectUI.gameObject.SetActive(newGameState == GameState.PlayerSelect);
 			gameUI.gameObject.SetActive(newGameState == GameState.Playing);
 			overUI.gameObject.SetActive(newGameState == GameState.Over);
