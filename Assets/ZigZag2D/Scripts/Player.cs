@@ -35,16 +35,16 @@ namespace TunnelGame
 			Destroy(feverParticle.gameObject, 1);
 		}
 
-		public void PlayerAbility(List<Drop> drops)
+		public void PlayerAbility(List<Drop> drops, float deltaTime)
         {
 			switch (this.type)
             {
-				case PlayerType.Star: this.MagnetAbility(drops);
+				case PlayerType.Star: this.MagnetAbility(drops, deltaTime);
 					break;
             }
         }
 
-		private void MagnetAbility(List<Drop> drops)
+		private void MagnetAbility(List<Drop> drops, float deltaTime)
         {
 			foreach (var drop in drops)
 			{
@@ -53,8 +53,10 @@ namespace TunnelGame
 				if (distance < 40.0f)
 				{
 					// move
-					var pos = Vector2.MoveTowards(drop.transform.position, this.transform.position, 1 + Time.deltaTime);
+					var pos = Vector2.MoveTowards(drop.transform.position, this.transform.position, 1+(10 * Time.deltaTime));
 					drop.transform.position = pos;
+
+					//drop.transform.position += (this.transform.position - drop.transform.position).normalized * Time.deltaTime;
 				}
 			}
 		}

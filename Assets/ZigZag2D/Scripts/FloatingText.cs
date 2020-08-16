@@ -19,7 +19,7 @@ public class FloatingText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveSpeed = 0.5f;
+        moveSpeed = 3.0f;
         alphaSpeed = 3.0f;
         destroyTime = 2.0f;
         //this.text = GetComponent<Text>();

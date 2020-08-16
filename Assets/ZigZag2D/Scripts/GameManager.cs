@@ -142,6 +142,8 @@ namespace TunnelGame
 
 		private int CurrentSpeed { get; set; }
 
+		private AudioSource coin_sound;
+
         #endregion
 
         #region Unity Methods
@@ -149,6 +151,11 @@ namespace TunnelGame
         private void Start()
 		{
 			this.UnityAD.Initialize();
+			Application.targetFrameRate = 60;
+			if (this.coin_sound == null)
+            {
+				this.coin_sound = GameObject.Find("coin_sound").GetComponent<AudioSource>();
+			}
 
 			if (!gameCamera.orthographic)
 			{
@@ -228,7 +235,7 @@ namespace TunnelGame
 			UpdateTunnelPosition(move.y);
 			UpdateCameraPosition(false);
 
-			this.AdjustPlayerAbility();	//// 이게 플레이어쪽으로 들어가 있어야 할 것 같음. 혹은 이름을 Update 모시기로..
+			this.AdjustPlayerAbility(Time.deltaTime);	//// 이게 플레이어쪽으로 들어가 있어야 할 것 같음. 혹은 이름을 Update 모시기로..
 
 			CheckCollisions();
 			CheckDropsOffScreen();
@@ -296,7 +303,7 @@ namespace TunnelGame
 			// Create the mesh and the starting vertices
 			SetupMesh();
 
-			this.UnityAD.ShowAd();
+			//this.UnityAD.ShowAd();
 		}
 
 		/// <summary>
@@ -349,9 +356,9 @@ namespace TunnelGame
 			ChangeGameState(GameState.PlayerSelect);
 		}
 
-		private void AdjustPlayerAbility()
+		private void AdjustPlayerAbility(float deltaTime)
         {
-			this.player.PlayerAbility(this.drops);
+			this.player.PlayerAbility(this.drops, deltaTime);
         }
 
 		#endregion
@@ -536,7 +543,8 @@ namespace TunnelGame
 				{
 					// Increment the drops collected
 					this.IncreaseCurrentDropAmount(this.dropCollectAmount);
-					GameObject.Find("coin_sound").GetComponent<AudioSource>().Play();
+
+					this.coin_sound.Play();
 					// Set it to de-active, this will return it ot the pool
 					drops[i].gameObject.SetActive(false);
 					drops[i].Disappear();
