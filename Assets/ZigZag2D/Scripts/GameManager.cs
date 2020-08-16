@@ -128,6 +128,8 @@ namespace TunnelGame
 		public float	DropsCollected		{ get { return PlayerPrefs.GetFloat("TunnelGame_DropsCollected"); }			set { PlayerPrefs.SetFloat("TunnelGame_DropsCollected", value); } }
 		public string	UnlockedPlayerInfos	{ get { return PlayerPrefs.GetString("TunnelGame_UnlockedPlayerInfos"); }	set { PlayerPrefs.SetString("TunnelGame_UnlockedPlayerInfos", value); } }
 
+		public int PlayCount { get { return PlayerPrefs.GetInt("TunnelGame_PlayCount"); } set { PlayerPrefs.SetInt("TunnelGame_PlayCount", value); } }
+
 		// These values return the Y position of the mesh GameObject for the high score and average score
 		public float 	HighScoreYPos		{ get { return tunnelGameObject == null ? 0 : tunnelGameObject.transform.position.y + (float)HighScore / scoreMultiplier; } }
 		public float 	AverageScoreYPos	{ get { return tunnelGameObject == null ? 0 : tunnelGameObject.transform.position.y + (float)AverageScore / scoreMultiplier; } }
@@ -691,6 +693,7 @@ namespace TunnelGame
 			AverageScore = (AverageScore * (TimesPlayed - 1) + CurrentScore) / TimesPlayed;
 			
 			ChangeGameState(GameState.Over);
+			this.PlayCount++;
 		}
 
 		/// <summary>

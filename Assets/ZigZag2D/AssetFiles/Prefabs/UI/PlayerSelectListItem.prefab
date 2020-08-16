@@ -976,6 +976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconImage: {fileID: 11432820}
+  DescText: {fileID: 5410568068985190029}
   coinAmountText: {fileID: 11499492}
   unlockButton: {fileID: 146698}
   selectButton: {fileID: 178338}

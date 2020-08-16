@@ -9,6 +9,7 @@ namespace TunnelGame
 		#region Inspector Variables
 
 		[SerializeField] private Image		iconImage;
+		[SerializeField] private Text		DescText;
 		[SerializeField] private Text		coinAmountText;
 		[SerializeField] private GameObject	unlockButton;
 		[SerializeField] private GameObject	selectButton;
@@ -45,6 +46,7 @@ namespace TunnelGame
 			iconImage.color		= playerInfo.iconColor;
 
 			coinAmountText.text = playerInfo.unlockAmount.ToString();
+			DescText.text = playerInfo.description.ToString();
 
 			unlockButton.SetActive(playerInfo.locked);
 			selectButton.SetActive(!playerInfo.locked);
