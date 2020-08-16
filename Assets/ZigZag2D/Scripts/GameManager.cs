@@ -306,7 +306,11 @@ namespace TunnelGame
 			// Create the mesh and the starting vertices
 			SetupMesh();
 
-			//this.UnityAD.ShowAd();
+			if (this.PlayCount % 3 == 0)
+            {
+				//this.UnityAD.ShowAd();
+				this.PlayCount = 0;
+			}
 		}
 
 		/// <summary>
@@ -328,7 +332,7 @@ namespace TunnelGame
 		/// <summary>
 		/// Changes the state of the game and updates the UI
 		/// </summary>
-		public void ChangeGameState(GameState newGameState, bool isBackButton = false)
+		public void ChangeGameState(GameState newGameState, bool isBackButton = false, bool isNewRecord = false)
 		{
 			if (isBackButton && this.prevGameState != GameState.Over)
             {
@@ -344,8 +348,21 @@ namespace TunnelGame
 			startUI.gameObject.SetActive(newGameState == GameState.Idle);
 			playerSelectUI.gameObject.SetActive(newGameState == GameState.PlayerSelect);
 			gameUI.gameObject.SetActive(newGameState == GameState.Playing);
-			overUI.gameObject.SetActive(newGameState == GameState.Over);
 
+			if (isNewRecord)
+			{
+				var newRecordText = overUI.gameObject.transform.Find("CurrentScoreBkg").Find("NewRecordText");
+				newRecordText.gameObject.SetActive(true);
+				GameObject.Find("newrecord.mp3").GetComponent<AudioSource>().Play();
+			}
+			else
+			{
+				var newRecordText = overUI.gameObject.transform.Find("CurrentScoreBkg").Find("NewRecordText");
+				newRecordText.gameObject.SetActive(false);
+			}
+
+			overUI.gameObject.SetActive(newGameState == GameState.Over);
+			
 			this.prevGameState = this.gameState;
 			gameState = newGameState;
 		}
@@ -684,15 +701,17 @@ namespace TunnelGame
 			TimesPlayed++;
 
 			// Update the high score
-			if (CurrentScore > HighScore)
+			var isNewRecord = false;
+			if (CurrentScore > 0 && CurrentScore > HighScore)
 			{
 				HighScore = CurrentScore;
+				isNewRecord = true;
 			}
 
 			// Update the average score
 			AverageScore = (AverageScore * (TimesPlayed - 1) + CurrentScore) / TimesPlayed;
 			
-			ChangeGameState(GameState.Over);
+			ChangeGameState(GameState.Over, isNewRecord: isNewRecord);
 			this.PlayCount++;
 		}
 
