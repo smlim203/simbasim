@@ -3954,32 +3954,17 @@ MonoBehaviour:
     iconColor: {r: 0, g: 0, b: 0, a: 1}
   - playerPrefab: {fileID: 11415076, guid: fc8156b5f8a93478fad19434a9cc0447, type: 3}
     locked: 1
-    unlockAmount: 10
+    unlockAmount: 3000
     icon: {fileID: 21300000, guid: 4a7481f75aa3f4aa68fb2ecf388e3ed8, type: 3}
     iconColor: {r: 0.38823533, g: 0.64705884, b: 0.9568628, a: 1}
-  - playerPrefab: {fileID: 11471318, guid: 6a2f3a5cf00034986b35a4c448718cb9, type: 3}
-    locked: 1
-    unlockAmount: 10
-    icon: {fileID: 21300000, guid: 4a7481f75aa3f4aa68fb2ecf388e3ed8, type: 3}
-    iconColor: {r: 0.38823533, g: 0.9568628, b: 0.5568628, a: 1}
-  - playerPrefab: {fileID: 11475218, guid: 450624330ee6445bea89998b93ac9446, type: 3}
-    locked: 1
-    unlockAmount: 10
-    icon: {fileID: 21300000, guid: 4a7481f75aa3f4aa68fb2ecf388e3ed8, type: 3}
-    iconColor: {r: 0.9568628, g: 0.38823533, b: 0.75294125, a: 1}
-  - playerPrefab: {fileID: 11464754, guid: b1a85f3374c754f0ca4a2a3506639de3, type: 3}
-    locked: 1
-    unlockAmount: 10
-    icon: {fileID: 21300000, guid: 4a7481f75aa3f4aa68fb2ecf388e3ed8, type: 3}
-    iconColor: {r: 0.9568628, g: 0.38823533, b: 0.38823533, a: 1}
   - playerPrefab: {fileID: 11466444, guid: 6a68b0438083d4497b07431bdf1e1a7b, type: 3}
     locked: 1
-    unlockAmount: 50
+    unlockAmount: 12000
     icon: {fileID: 21300000, guid: 9437585a583bb494dae845b9d204afab, type: 3}
     iconColor: {r: 1, g: 1, b: 1, a: 1}
   - playerPrefab: {fileID: 11408666, guid: c0518bdeceb7d4ff8981b49c2f41a1f3, type: 3}
     locked: 1
-    unlockAmount: 50
+    unlockAmount: 20000
     icon: {fileID: 21300000, guid: 32d930d85634f4e8f92832294f0dca08, type: 3}
     iconColor: {r: 1, g: 1, b: 1, a: 1}
   initialSpeed: 100
@@ -4488,7 +4473,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0012817383, y: -398.4}
+  m_AnchoredPosition: {x: 0.0013427734, y: -398.39996}
   m_SizeDelta: {x: -0.001953125, y: -1363.4937}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1609448924
