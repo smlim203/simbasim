@@ -308,7 +308,7 @@ namespace TunnelGame
 
 			if (this.PlayCount % 3 == 0)
             {
-				//this.UnityAD.ShowAd();
+				this.UnityAD.ShowAd();
 				this.PlayCount = 0;
 			}
 		}
