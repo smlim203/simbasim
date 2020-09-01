@@ -172,7 +172,7 @@ PlayerSettings:
     iPhone: com.nickf.tunnelgame
     tvOS: com.nickf.tunnelgame
   buildNumber: {}
-  AndroidBundleVersionCode: 4
+  AndroidBundleVersionCode: 5
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 29
   AndroidPreferredInstallLocation: 1

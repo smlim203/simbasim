@@ -313,13 +313,14 @@ namespace TunnelGame
 			if (this.PlayCount % 3 == 0)
             {
 				//this.UnityAD.ShowAd();
-				if (this.Admob == null)
-                {
-					this.Admob = new Admob();
-                }
+				////if (this.Admob == null)
+    ////            {
+				////	this.Admob = new Admob();
+    ////            }
 
 				//this.Admob.BannerAdsShow();
 				this.Admob.FullScreenAdsShow();
+				this.Admob.Init();
 
 				this.PlayCount = 0;
 			}

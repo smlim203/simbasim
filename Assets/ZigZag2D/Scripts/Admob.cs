@@ -23,17 +23,12 @@ public class Admob// : MonoBehaviour
 
     public void Init()
     {
-        this.RequestBannerAd();
+        //this.RequestBannerAd();
         this.RequestInterstitial();
     }
 
     public void FullScreenAdsShow()
     {
-        if (this.interstitialAd == null)
-        {
-            return;
-        }
-
         if (this.interstitialAd.IsLoaded())
         {
             this.interstitialAd.Show();
@@ -50,7 +45,7 @@ public class Admob// : MonoBehaviour
         this.bannerView.Show();
     }
 
-    private void RequestInterstitial()
+    public void RequestInterstitial()
     {
         string adUnitId;
 
