@@ -5,6 +5,7 @@ using Assets.ZigZag2D.Scripts;
 using UnityEngine.Advertisements;
 using TMPro;
 using UnityEngine.UI;
+using GoogleMobileAds.Api;
 
 namespace TunnelGame
 {
@@ -118,7 +119,8 @@ namespace TunnelGame
 		public int 			CurrentScore 	{ get; set; }
 		public float		CurrentDropsAmount { get; set; }
 
-		public UnityAD UnityAD = new UnityAD();
+		//public UnityAD UnityAD = new UnityAD();
+		public Admob Admob = new Admob();
 
 		// These values are saved across app loads
 		public int		CurrentPlayerIndex	{ get { return PlayerPrefs.GetInt("TunnelGame_CurrentPlayerIndex"); }		set { PlayerPrefs.SetInt("TunnelGame_CurrentPlayerIndex", value); } }
@@ -153,7 +155,9 @@ namespace TunnelGame
 
         private void Start()
 		{
-			this.UnityAD.Initialize();
+			//this.UnityAD.Initialize();
+			this.Admob.Init();
+
 			Application.targetFrameRate = 60;
 			if (this.coin_sound == null)
             {
@@ -308,7 +312,15 @@ namespace TunnelGame
 
 			if (this.PlayCount % 3 == 0)
             {
-				this.UnityAD.ShowAd();
+				//this.UnityAD.ShowAd();
+				if (this.Admob == null)
+                {
+					this.Admob = new Admob();
+                }
+
+				//this.Admob.BannerAdsShow();
+				this.Admob.FullScreenAdsShow();
+
 				this.PlayCount = 0;
 			}
 		}
